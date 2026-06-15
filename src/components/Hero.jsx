@@ -31,8 +31,8 @@ export default function Hero() {
       {/* Subtle grid pattern in the background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
-      {/* Light blue/grey backdrop panel on the right side of the screen matching reference */}
-      <div className="absolute right-0 top-0 bottom-0 w-[28%] lg:w-[32%] bg-[#d3e3fd]/40 dark:bg-slate-900/40 border-l border-[#d3e3fd]/20 dark:border-slate-800/40 hidden lg:block -z-10" />
+      {/* Solid light blue backdrop panel on the right side of the screen matching reference */}
+      <div className="absolute right-0 top-0 bottom-0 w-[23%] bg-[#c2d9ff] dark:bg-slate-900 hidden lg:block z-0" />
 
       <div className="section-inner relative z-10 w-full">
         <motion.div
@@ -114,12 +114,19 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Desktop Right Column: Hero Photo & Vertical Rotated Text (Absolutely aligned to the bottom-right on desktop viewports) */}
+      {/* Vertical Name Text on the right half backdrop (pinned to right of section) */}
+      <div className="absolute right-[8%] lg:right-[10%] top-[8vh] bottom-[8vh] z-10 hidden lg:flex flex-col justify-between items-center select-none pointer-events-none text-white font-black uppercase text-6xl lg:text-[8vh] xl:text-[10vh] leading-none">
+        {'RAGAVAN'.split('').map((char, idx) => (
+          <span key={idx}>{char}</span>
+        ))}
+      </div>
+
+      {/* Desktop Right Column: Hero Photo (Absolutely aligned to the bottom, shifted leftward) */}
       <motion.div
         variants={fadeUp}
         initial="hidden"
         animate={controls}
-        className="absolute right-0 bottom-0 z-10 hidden lg:flex items-end justify-center w-[40%] h-[90vh] pointer-events-none"
+        className="absolute right-[8%] lg:right-[10%] bottom-0 z-20 hidden lg:flex items-end justify-center w-[40%] h-[90vh] pointer-events-none"
       >
         {/* Transparent photo sitting directly at the bottom edge */}
         <img
@@ -127,16 +134,6 @@ export default function Hero() {
           alt="Ragavan V"
           className="h-full w-auto object-contain object-bottom select-none pointer-events-auto"
         />
-
-        {/* Vertical Name Text on the right half backdrop */}
-        <div className="absolute right-8 bottom-16 z-0 flex flex-col items-center justify-end select-none pointer-events-none">
-          <span
-            className="text-7xl lg:text-8xl font-black text-slate-300/35 dark:text-slate-800/30 tracking-widest uppercase select-none"
-            style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
-          >
-            RAGAVAN
-          </span>
-        </div>
       </motion.div>
     </section>
   );
