@@ -1,0 +1,201 @@
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  Activity,
+  ArrowUpRight,
+  BarChart3,
+  BrainCircuit,
+  ChevronDown,
+  ChevronUp,
+  Cloud,
+  Database,
+  GitBranch,
+  Globe,
+  LayoutDashboard,
+  Network,
+  Radar,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  WalletCards,
+  WifiOff,
+} from 'lucide-react';
+import useInView from '../hooks/useInView';
+import { scaleIn } from '../lib/animations';
+import Carousel from './Carousel';
+import ArchitectureFlow from './ArchitectureFlow';
+
+const iconMap = {
+  Activity,
+  BarChart3,
+  BrainCircuit,
+  Cloud,
+  Database,
+  GitBranch,
+  Globe,
+  LayoutDashboard,
+  Network,
+  Radar,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  WalletCards,
+  WifiOff,
+};
+
+function highlightIcon(name) {
+  const Icon = iconMap[name] ?? Sparkles;
+  return <Icon className="h-4 w-4 text-accent" />;
+}
+
+export default function ProjectCard({ project }) {
+  const { ref, controls } = useInView();
+  const [open, setOpen] = useState(false);
+
+  return (
+    <motion.article
+      ref={ref}
+      className="card-shell overflow-hidden p-0"
+      variants={scaleIn}
+      initial="hidden"
+      animate={controls}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="grid min-w-0 gap-0 lg:grid-cols-2">
+        {/* Carousel Column */}
+        <div className="min-w-0 p-6 flex flex-col justify-center bg-white/10 dark:bg-slate-950/15">
+          <Carousel slides={project.images} title={project.title} />
+        </div>
+
+        {/* Content Column */}
+        <div className="min-w-0 border-t border-theme p-6 lg:border-l lg:border-t-0 bg-white/25 dark:bg-slate-900/25 flex flex-col justify-between">
+          <div>
+            {/* Category badge */}
+            <span className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-1 text-xs font-semibold">
+              {project.badge}
+            </span>
+
+            <h3 className="mt-4 text-xl font-bold text-primary">{project.title}</h3>
+            <p className="mt-2 text-sm text-secondary">{project.tagline}</p>
+
+            {/* Key highlights: 3-column icon+label grid */}
+            <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {project.highlights.map((item) => (
+                <div
+                  key={item.label}
+                  className="flex flex-col items-center justify-center rounded-lg border border-theme bg-surface dark:bg-page p-3 text-center"
+                >
+                  {highlightIcon(item.icon)}
+                  <p className="mt-2 text-[11px] font-medium text-secondary leading-snug">{item.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Architecture Flow */}
+            <div className="mt-5">
+              <ArchitectureFlow nodes={project.architecture} />
+            </div>
+
+            {/* Feature Table */}
+            <div className="mt-5 overflow-hidden rounded-lg border border-theme">
+              <table className="w-full border-collapse text-xs">
+                <thead className="bg-[#F9FAFB] dark:bg-page text-secondary border-b border-theme">
+                  <tr>
+                    <th className="px-3 py-2 text-left font-semibold">Feature</th>
+                    <th className="px-3 py-2 text-left font-semibold">Description</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-theme">
+                  {project.features.map((row) => (
+                    <tr key={row.feature} className="align-top">
+                      <td className="px-3 py-2 font-medium text-primary bg-surface/40 dark:bg-transparent">{row.feature}</td>
+                      <td className="px-3 py-2 text-secondary">{row.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Tech stack pills (blue-tinted: #EFF6FF bg, #1D4ED8 text) */}
+            <div className="mt-5 flex flex-wrap gap-1.5">
+              {project.stack.map((tech) => (
+                <span
+                  key={tech}
+                  className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-0.5 text-xs font-semibold"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Actions & Accordion */}
+          <div className="mt-6 pt-5 border-t border-theme">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex gap-2">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-outline px-3 py-1.5 text-xs inline-flex items-center gap-1 border-accent"
+                >
+                  GitHub <ArrowUpRight className="h-3 w-3" />
+                </a>
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-solid px-3 py-1.5 text-xs inline-flex items-center gap-1"
+                >
+                  Live Demo <ArrowUpRight className="h-3 w-3" />
+                </a>
+              </div>
+
+              {/* Accordion toggle */}
+              <button
+                type="button"
+                onClick={() => setOpen((value) => !value)}
+                className="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:text-accent transition-colors"
+              >
+                Engineering notes {open ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+              </button>
+            </div>
+
+            {/* Engineering notes accordion content */}
+            <AnimatePresence initial={false}>
+              {open && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-4 pt-4 border-t border-theme space-y-3 text-xs leading-relaxed text-secondary">
+                    <p>
+                      <span className="font-semibold text-primary block mb-0.5">Challenges Faced</span>
+                      Ensuring high-efficiency performance and managing synchronization across offline states.
+                    </p>
+                    <p>
+                      <span className="font-semibold text-primary block mb-0.5">Architecture Decisions</span>
+                      Separating core processing logic from presentation components for scale and modulatory isolation.
+                    </p>
+                    <p>
+                      <span className="font-semibold text-primary block mb-0.5">Performance Choices</span>
+                      Deferred API updates and local database caching to minimize render blocking and bandwidth overhead.
+                    </p>
+                    <p>
+                      <span className="font-semibold text-primary block mb-0.5">Next Steps</span>
+                      Optimizing database query paths and introducing rigorous end-to-end integration testing.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}

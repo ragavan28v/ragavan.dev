@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-page: #ffffff;
+  --bg-surface: #f8f9fa;
+  --bg-card: #ffffff;
+  --border: #e5e7eb;
+  --text-1: #111827;
+  --text-2: #6b7280;
+  --text-3: #9ca3af;
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --accent-surface: #eff6ff;
+  --accent-text: #1d4ed8;
+  --divider: #e5e7eb;
+  color-scheme: light;
+}
+
+.dark {
+  --bg-page: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-card: #1e293b;
+  --border: #334155;
+  --text-1: #f1f5f9;
+  --text-2: #94a3b8;
+  --text-3: #64748b;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-surface: #1e293b;
+  --accent-text: #3b82f6;
+  --divider: #334155;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--bg-page);
+    color: var(--text-1);
+    line-height: 1.75;
+  }
+
+  ::selection {
+    background: var(--accent-surface);
+    color: var(--accent-text);
+  }
+}
+
+@layer components {
+  .bg-page {
+    background-color: var(--bg-page);
+  }
+
+  .bg-surface {
+    background-color: var(--bg-surface);
+  }
+
+  .bg-card {
+    background-color: var(--bg-card);
+  }
+
+  .bg-accent-surface {
+    background-color: var(--accent-surface);
+  }
+
+  .border-theme {
+    border-color: var(--border);
+  }
+
+  .border-divider {
+    border-color: var(--divider);
+  }
+
+  .border-accent {
+    border-color: var(--accent);
+  }
+
+  .text-primary {
+    color: var(--text-1);
+  }
+
+  .text-secondary {
+    color: var(--text-2);
+  }
+
+  .text-muted {
+    color: var(--text-3);
+  }
+
+  .text-accent {
+    color: var(--accent);
+  }
+
+  .section-shell {
+    @apply py-20;
+  }
+
+  .section-inner {
+    @apply mx-auto max-w-6xl px-6 lg:pl-32;
+  }
+
+  .section-kicker {
+    @apply text-xs font-medium uppercase tracking-widest;
+    color: var(--accent);
+  }
+
+  .section-heading {
+    @apply text-3xl font-semibold tracking-tight text-primary;
+  }
+
+  .section-copy {
+    @apply mt-4 text-base leading-relaxed text-secondary;
+  }
+
+  .glass-effect {
+    background-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .dark .glass-effect {
+    background-color: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .card-shell {
+    @apply rounded-xl p-6 shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg;
+    background-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .dark .card-shell {
+    background-color: rgba(30, 41, 59, 0.50);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .pill-shell {
+    @apply inline-flex items-center rounded-full border border-theme bg-white/50 px-3 py-1 text-xs font-medium text-primary transition-colors duration-150 backdrop-blur-sm;
+  }
+
+  .pill-exploring {
+    @apply inline-flex items-center rounded-full border border-dashed px-3 py-1 text-xs font-medium;
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+    color: var(--text-2);
+  }
+
+  .dark .pill-shell {
+    background-color: #2a3147;
+  }
+
+  .dark .pill-exploring {
+    border-color: #3a4460;
+    background-color: #1e2434;
+  }
+
+  .btn-solid {
+    @apply inline-flex items-center justify-center rounded-lg border px-5 py-2.5 text-sm font-semibold transition-colors duration-150;
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+  }
+
+  .btn-solid:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-lg border px-5 py-2.5 text-sm font-semibold transition-colors duration-150;
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--accent-surface);
+  }
+
+  .btn-outline.border-accent {
+    border-color: var(--accent);
+  }
+
+  .link-accent {
+    @apply inline-flex items-center gap-1 text-sm font-medium transition-colors duration-150;
+    color: var(--text-2);
+  }
+
+  .link-accent:hover {
+    color: var(--text-1);
+  }
+
+  .navbar-shell {
+    background-color: color-mix(in srgb, var(--bg-card) 92%, transparent);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+}
