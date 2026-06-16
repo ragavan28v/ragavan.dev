@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
+  Award,
   BrainCircuit,
   Briefcase,
   Download,
@@ -8,6 +9,7 @@ import {
   Moon,
   Send,
   Sun,
+  Trophy,
   UserRound,
 } from 'lucide-react';
 import useScrollSpy from '../hooks/useScrollSpy';
@@ -16,6 +18,8 @@ const links = [
   { label: 'About', id: 'about', icon: UserRound },
   { label: 'Skills', id: 'skills', icon: BrainCircuit },
   { label: 'Projects', id: 'projects', icon: FolderGit2 },
+  { label: 'Achievements', id: 'achievements', icon: Trophy },
+  { label: 'Certifications', id: 'certifications', icon: Award },
   { label: 'Experience', id: 'experience', icon: Briefcase },
   { label: 'Contact', id: 'contact', icon: Send },
 ];
@@ -27,8 +31,10 @@ const yMap = {
   about: 110,
   skills: 165,
   projects: 220,
-  experience: 275,
-  contact: 330,
+  achievements: 275,
+  certifications: 330,
+  experience: 385,
+  contact: 440,
 };
 
 function scrollToSection(id) {
@@ -41,8 +47,8 @@ const getPath = (activeY, isHome) => {
     return `
       M 32,0
       A 32,32 0 0,1 64,32
-      L 64,368
-      A 32,32 0 0,1 0,368
+      L 64,478
+      A 32,32 0 0,1 0,478
       L 0,32
       A 32,32 0 0,1 32,0
       Z
@@ -55,8 +61,8 @@ const getPath = (activeY, isHome) => {
     A 10,10 0 0,1 46.67,${activeY - 13.6}
     A 20,20 0 1,0 46.67,${activeY + 13.6}
     A 10,10 0 0,1 64,${activeY + 20.4}
-    L 64,368
-    A 32,32 0 0,1 0,368
+    L 64,478
+    A 32,32 0 0,1 0,478
     L 0,32
     A 32,32 0 0,1 32,0
     Z
@@ -142,15 +148,15 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
 
       {/* DESKTOP SIDE NAVIGATION */}
       <nav
-        className="fixed z-50 left-8 top-1/2 -translate-y-1/2 w-16 h-[400px] hidden lg:block"
+        className="fixed z-50 left-8 top-1/2 -translate-y-1/2 w-16 h-[510px] hidden lg:block"
         aria-label="Primary Desktop"
       >
         {/* DESKTOP BACKGROUND SVG WITH MORPHING KEYHOLE CUTOUT */}
         <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none">
           <svg
             width="64"
-            height="400"
-            viewBox="0 0 64 400"
+            height="510"
+            viewBox="0 0 64 510"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="w-full h-full drop-shadow-md backdrop-blur-md overflow-visible"
@@ -227,7 +233,7 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
 
       {/* MOBILE BOTTOM NAVIGATION */}
       <nav
-        className="fixed z-50 bottom-6 left-1/2 -translate-x-1/2 flex h-16 w-[90%] max-w-md items-center justify-around rounded-full px-6 bg-slate-200/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-300/30 dark:border-slate-700/30 shadow-lg text-[#06223F] dark:text-slate-200 lg:hidden"
+        className="fixed z-50 bottom-6 left-1/2 -translate-x-1/2 flex h-16 w-[92%] max-w-lg items-center justify-around rounded-full px-6 bg-slate-200/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-300/30 dark:border-slate-700/30 shadow-lg text-[#06223F] dark:text-slate-200 lg:hidden"
         aria-label="Primary Mobile"
       >
         {links.map((link, i) => {

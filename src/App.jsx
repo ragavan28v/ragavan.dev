@@ -6,6 +6,8 @@ import Hero from './components/Hero';
 const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/Skills'));
 const Projects = lazy(() => import('./components/Projects'));
+const Achievements = lazy(() => import('./components/Achievements'));
+const Certifications = lazy(() => import('./components/Certifications'));
 const Experience = lazy(() => import('./components/Experience'));
 const GitHubSection = lazy(() => import('./components/GitHubSection'));
 const Blog = lazy(() => import('./components/Blog'));
@@ -46,6 +48,8 @@ export default function App() {
           <About />
           <Skills />
           <Projects />
+          <Achievements />
+          <Certifications />
           <Experience />
           <GitHubSection />
           <Blog />
