@@ -82,7 +82,7 @@ export default function Hero() {
                 }}
                 className="btn-solid"
               >
-                View Projects
+                Build Archive
               </a>
               <a
                 href="https://drive.google.com/file/d/1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY/view?usp=drive_link"
@@ -90,7 +90,7 @@ export default function Hero() {
                 rel="noreferrer"
                 className="btn-outline border-accent"
               >
-                Download Resume
+                Skill Snapshot
               </a>
               <div className="flex items-center gap-3">
                 <a

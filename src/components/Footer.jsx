@@ -36,7 +36,7 @@ export default function Footer() {
             <Mail className="h-4 w-4" />
           </a>
           <a
-            href="https://drive.google.com/file/d/1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY/view?usp=drive_link"
+            href="https://drive.google.com/uc?export=download&id=1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY"
             target="_blank"
             rel="noreferrer"
             className="inline-flex h-9 w-9 items-center justify-center rounded-full glass-effect transition-colors hover:text-accent"

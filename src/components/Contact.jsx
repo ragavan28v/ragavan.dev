@@ -8,7 +8,7 @@ const contactLinks = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ragavan-v-15a2b3292/', icon: Linkedin },
   { label: 'GitHub', href: 'https://github.com/ragavan28v', icon: Github },
   { label: 'Email', href: 'mailto:ragavan@example.com', icon: Mail },
-  { label: 'Resume', href: 'https://drive.google.com/file/d/1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY/view?usp=drive_link', icon: FileText },
+  { label: 'Resume', href: 'https://drive.google.com/uc?export=download&id=1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY', icon: FileText },
 ];
 
 export default function Contact() {

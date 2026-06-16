@@ -128,7 +128,7 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
       {/* Unified Top Right Quick Actions (always at the top right corner) */}
       <div className="fixed top-6 right-6 lg:right-10 z-40 flex items-center gap-3">
         <a
-          href="https://drive.google.com/file/d/1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY/view?usp=drive_link"
+          href="https://drive.google.com/uc?export=download&id=1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY"
           target="_blank"
           rel="noreferrer"
           className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-200/60 dark:bg-slate-800/60 backdrop-blur-md border border-slate-300/30 dark:border-slate-700/30 text-[#06223F] dark:text-white transition-all duration-150 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 shadow-sm"
