@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Linkedin } from 'lucide-react';
 import useInView from '../hooks/useInView';
-import { fadeUp } from '../lib/animations';
+import { cardReveal, fadeDown, fadeUp, stagger } from '../lib/animations';
 
 const tags = [
   'Full-Stack Development',
@@ -38,23 +38,24 @@ export default function Hero() {
         <motion.div
           ref={ref}
           className="grid items-center gap-12 lg:grid-cols-2 lg:gap-8"
+          variants={stagger}
           initial="hidden"
           animate={controls}
         >
           {/* Left Column: Copy & Actions */}
-          <motion.div variants={fadeUp} className="flex flex-col justify-center text-left">
-            <span className="section-kicker text-sm font-semibold tracking-wider text-accent uppercase">
+          <motion.div variants={stagger} className="flex flex-col justify-center text-left">
+            <motion.span variants={fadeDown} className="section-kicker text-sm font-semibold tracking-wider text-accent uppercase">
               Full-Stack Developer
-            </span>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
+            </motion.span>
+            <motion.h1 variants={fadeDown} className="mt-4 text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
               Ragavan V
-            </h1>
-            <h2 className="mt-4 text-xl font-normal leading-relaxed text-secondary sm:text-2xl max-w-xl">
+            </motion.h1>
+            <motion.h2 variants={fadeUp} className="mt-4 text-xl font-normal leading-relaxed text-secondary sm:text-2xl max-w-xl">
               Building full-stack applications, integrating AI where it adds value, and learning React Native for mobile experiences.
-            </h2>
+            </motion.h2>
 
             {/* Cycling Tag Strip */}
-            <div className="mt-6 flex h-8 items-center gap-2 text-sm font-semibold text-accent overflow-hidden">
+            <motion.div variants={fadeUp} className="mt-6 flex h-8 items-center gap-2 text-sm font-semibold text-accent overflow-hidden">
               <span className="text-secondary font-medium">Focused on:</span>
               <div className="relative w-48 h-full flex items-center">
                 <AnimatePresence mode="wait">
@@ -70,74 +71,83 @@ export default function Hero() {
                   </motion.span>
                 </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
 
             {/* CTA row */}
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
+            <motion.div variants={stagger} className="mt-10 flex flex-wrap items-center gap-4">
+              <motion.a
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
                 }}
+                variants={fadeUp}
                 className="btn-solid"
               >
                 Build Archive
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://drive.google.com/file/d/1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY/view?usp=drive_link"
                 target="_blank"
                 rel="noreferrer"
+                variants={fadeUp}
                 className="btn-outline border-accent"
               >
                 Skill Snapshot
-              </a>
-              <div className="flex items-center gap-3">
-                <a
+              </motion.a>
+              <motion.div variants={stagger} className="flex items-center gap-3">
+                <motion.a
                   href="https://github.com/ragavan28v"
                   target="_blank"
                   rel="noreferrer"
+                  variants={fadeUp}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-200/70 dark:bg-slate-800/70 backdrop-blur-md border border-slate-300/30 dark:border-slate-700/30 text-[#06223F] dark:text-white shadow-md transition-all duration-150 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 hover:shadow-lg"
                   aria-label="GitHub"
                   title="GitHub"
                 >
                   <Github className="h-4 w-4" />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="https://www.linkedin.com/in/ragavan-v-15a2b3292/"
                   target="_blank"
                   rel="noreferrer"
+                  variants={fadeUp}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-200/70 dark:bg-slate-800/70 backdrop-blur-md border border-slate-300/30 dark:border-slate-700/30 text-[#06223F] dark:text-white shadow-md transition-all duration-150 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 hover:shadow-lg"
                   aria-label="LinkedIn"
                   title="LinkedIn"
                 >
                   <Linkedin className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
+                </motion.a>
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           {/* Mobile Right Column: Hero Photo (Visible only on mobile/tablet inside the grid flow) */}
-          <div className="relative flex items-center justify-center h-[340px] w-full lg:hidden">
+          <motion.div variants={cardReveal} className="relative flex items-center justify-center h-[340px] w-full lg:hidden">
             <img
               src="/hero-photo.png"
               alt="Ragavan V"
               className="h-full w-auto object-contain select-none pointer-events-none"
             />
-          </div>
+          </motion.div>
         </motion.div>
       </div>
 
       {/* Vertical Name Text on the right half backdrop (pinned to right of section) */}
-      <div className="absolute right-[8%] lg:right-[10%] top-[8vh] bottom-[8vh] z-10 hidden lg:flex flex-col justify-between items-center select-none pointer-events-none text-white font-black uppercase text-6xl lg:text-[8vh] xl:text-[10vh] leading-none">
+      <motion.div
+        variants={fadeDown}
+        initial="hidden"
+        animate={controls}
+        className="absolute right-[8%] lg:right-[10%] top-[8vh] bottom-[8vh] z-10 hidden lg:flex flex-col justify-between items-center select-none pointer-events-none text-white font-black uppercase text-6xl lg:text-[8vh] xl:text-[10vh] leading-none"
+      >
         {'RAGAVAN'.split('').map((char, idx) => (
           <span key={idx}>{char}</span>
         ))}
-      </div>
+      </motion.div>
 
       {/* Desktop Right Column: Hero Photo (Absolutely aligned to the bottom, shifted leftward) */}
       <motion.div
-        variants={fadeUp}
+        variants={cardReveal}
         initial="hidden"
         animate={controls}
         className="absolute right-[8%] lg:right-[10%] bottom-0 z-20 hidden lg:flex items-end justify-center w-[40%] h-[90vh] pointer-events-none"

@@ -164,7 +164,7 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
             <motion.path
               animate={{ d: getPath(activeY, activeId === 'home') }}
               transition={{ type: 'tween', ease: [0.25, 1, 0.5, 1], duration: 0.35 }}
-              className="fill-slate-200/65 dark:fill-slate-900/65 stroke-[#06223F] dark:stroke-slate-700"
+              className="fill-transparent stroke-[#06223F] dark:stroke-slate-700"
               strokeWidth="2"
             />
           </svg>

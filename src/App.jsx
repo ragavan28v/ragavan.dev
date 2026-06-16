@@ -15,7 +15,11 @@ const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
 
 function SectionFallback() {
-  return <div className="section-shell" aria-hidden="true" />;
+  return <div className="section-shell min-h-screen flex items-center" aria-hidden="true" />;
+}
+
+function LazySection({ children }) {
+  return <Suspense fallback={<SectionFallback />}>{children}</Suspense>;
 }
 
 export default function App() {
@@ -43,18 +47,36 @@ export default function App() {
       <Navbar darkMode={darkMode} onToggleDarkMode={() => setDarkMode((value) => !value)} />
       <main className="transition-all duration-300">
         <Hero />
-        <Suspense fallback={<SectionFallback />}>
+        <LazySection>
           <About />
+        </LazySection>
+        <LazySection>
           <Skills />
+        </LazySection>
+        <LazySection>
           <Projects />
+        </LazySection>
+        <LazySection>
           <Achievements />
+        </LazySection>
+        <LazySection>
           <Certifications />
+        </LazySection>
+        <LazySection>
           <Experience />
+        </LazySection>
+        <LazySection>
           <GitHubSection />
+        </LazySection>
+        <LazySection>
           <Blog />
+        </LazySection>
+        <LazySection>
           <Contact />
+        </LazySection>
+        <LazySection>
           <Footer />
-        </Suspense>
+        </LazySection>
       </main>
     </div>
   );

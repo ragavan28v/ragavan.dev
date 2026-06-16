@@ -18,6 +18,8 @@ export default function useInView(options) {
       ([entry]) => {
         if (entry.isIntersecting) {
           controls.start('visible');
+        } else {
+          controls.start('hidden');
         }
       },
       observerOptions
