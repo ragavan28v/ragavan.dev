@@ -23,10 +23,9 @@ export default function App() {
 
   useEffect(() => {
     const stored = window.localStorage.getItem('theme');
-    const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ?? false;
-    const initialDark = stored ? stored === 'dark' : prefersDark;
-
-    setDarkMode(initialDark);
+    if (stored) {
+      setDarkMode(stored === 'dark');
+    }
   }, []);
 
   useEffect(() => {
