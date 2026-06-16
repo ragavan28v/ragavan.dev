@@ -5,10 +5,10 @@ import useInView from '../hooks/useInView';
 import { fadeUp, stagger } from '../lib/animations';
 
 const contactLinks = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/', icon: Linkedin },
-  { label: 'GitHub', href: 'https://github.com/', icon: Github },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ragavan-v-15a2b3292/', icon: Linkedin },
+  { label: 'GitHub', href: 'https://github.com/ragavan28v', icon: Github },
   { label: 'Email', href: 'mailto:ragavan@example.com', icon: Mail },
-  { label: 'Resume', href: 'https://example.com/ragavan-v-resume.pdf', icon: FileText },
+  { label: 'Resume', href: 'https://drive.google.com/file/d/1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY/view?usp=drive_link', icon: FileText },
 ];
 
 export default function Contact() {
@@ -46,12 +46,11 @@ export default function Contact() {
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-                  className="flex flex-col items-center gap-1.5 text-secondary hover:text-accent transition-colors duration-150"
+                  className="inline-flex h-12 w-12 items-center justify-center rounded-full glass-effect text-secondary shadow-md transition-colors duration-150 hover:border-accent hover:text-accent"
+                  aria-label={link.label}
+                  title={link.label}
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full glass-effect shadow-md hover:border-accent hover:text-accent transition-colors">
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <span className="text-xs font-semibold">{link.label}</span>
+                  <Icon className="h-4 w-4" />
                 </a>
               );
             })}

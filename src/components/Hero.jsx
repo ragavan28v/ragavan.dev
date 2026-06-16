@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import useInView from '../hooks/useInView';
 import { fadeUp } from '../lib/animations';
 
 const tags = [
-  'AI Agents',
+  'Full-Stack Development',
+  'AI Integration',
   'React Native',
-  'RAG Pipelines',
   'MERN Stack',
-  'Real-Time Systems'
+  'Mobile Apps'
 ];
 
 export default function Hero() {
@@ -44,13 +44,13 @@ export default function Hero() {
           {/* Left Column: Copy & Actions */}
           <motion.div variants={fadeUp} className="flex flex-col justify-center text-left">
             <span className="section-kicker text-sm font-semibold tracking-wider text-accent uppercase">
-              Full-Stack MERN + AI Systems
+              Full-Stack Developer
             </span>
             <h1 className="mt-4 text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
               Ragavan V
             </h1>
             <h2 className="mt-4 text-xl font-normal leading-relaxed text-secondary sm:text-2xl max-w-xl">
-              Building AI-driven systems, mobile experiences, and intelligent software.
+              Building full-stack applications, integrating AI where it adds value, and learning React Native for mobile experiences.
             </h2>
 
             {/* Cycling Tag Strip */}
@@ -85,21 +85,35 @@ export default function Hero() {
                 View Projects
               </a>
               <a
-                href="https://example.com/ragavan-v-resume.pdf"
+                href="https://drive.google.com/file/d/1tfAqFMEOjnK1-TJiCBkj9PM4BhfcrCFY/view?usp=drive_link"
                 target="_blank"
                 rel="noreferrer"
                 className="btn-outline border-accent"
               >
                 Download Resume
               </a>
-              <a
-                href="https://github.com/"
-                target="_blank"
-                rel="noreferrer"
-                className="link-accent inline-flex items-center gap-1 hover:opacity-80"
-              >
-                GitHub <ArrowUpRight className="h-4 w-4" />
-              </a>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/ragavan28v"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-200/70 dark:bg-slate-800/70 backdrop-blur-md border border-slate-300/30 dark:border-slate-700/30 text-[#06223F] dark:text-white shadow-md transition-all duration-150 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 hover:shadow-lg"
+                  aria-label="GitHub"
+                  title="GitHub"
+                >
+                  <Github className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/ragavan-v-15a2b3292/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-200/70 dark:bg-slate-800/70 backdrop-blur-md border border-slate-300/30 dark:border-slate-700/30 text-[#06223F] dark:text-white shadow-md transition-all duration-150 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 hover:shadow-lg"
+                  aria-label="LinkedIn"
+                  title="LinkedIn"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </motion.div>
 
