@@ -76,12 +76,30 @@ export default function ProjectCard({ project }) {
       <span className="cyber-panel-corner cyber-corner-br" />
 
       <div className="grid min-w-0 gap-0 lg:grid-cols-2">
-        {/* Left Column: Carousel */}
+        {/* Left Column: Carousel & Features list */}
         <motion.div
           variants={shutterLeft}
-          className="min-w-0 p-6 flex flex-col justify-center bg-white/10 dark:bg-slate-950/15"
+          className="min-w-0 p-5 flex flex-col justify-between bg-white/10 dark:bg-slate-950/15 gap-4"
         >
-          <Carousel slides={project.images} title={project.title} />
+          <div className="flex-1 flex flex-col justify-center">
+            <Carousel slides={project.images} title={project.title} />
+          </div>
+          
+          <div className="border border-theme rounded-xl p-3 bg-white/30 dark:bg-slate-950/25">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-secondary/70 uppercase mb-2 block">
+              SYSTEM_FEATURES_MANIFEST:
+            </span>
+            <div className="space-y-1.5">
+              {project.features.map((row) => (
+                <div key={row.feature} className="flex gap-2 items-start text-[11px] leading-snug">
+                  <span className="h-1 w-1 rounded-full bg-accent mt-1.5 shrink-0" />
+                  <p className="text-secondary">
+                    <strong className="text-primary font-semibold">{row.feature}:</strong> {row.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* Right Column: Details */}
@@ -119,26 +137,6 @@ export default function ProjectCard({ project }) {
             {/* Architecture Flow */}
             <div className="mt-5">
               <ArchitectureFlow nodes={project.architecture} />
-            </div>
-
-            {/* Feature Table */}
-            <div className="mt-5 overflow-hidden rounded-lg border border-theme">
-              <table className="w-full border-collapse text-xs">
-                <thead className="bg-[#F9FAFB] dark:bg-page text-secondary border-b border-theme">
-                  <tr>
-                    <th className="px-3 py-2 text-left font-semibold">Feature</th>
-                    <th className="px-3 py-2 text-left font-semibold">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-theme">
-                  {project.features.map((row) => (
-                    <tr key={row.feature} className="align-top">
-                      <td className="px-3 py-2 font-medium text-primary bg-surface/40 dark:bg-transparent">{row.feature}</td>
-                      <td className="px-3 py-2 text-secondary">{row.description}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
 
             {/* Tech stack pills */}
