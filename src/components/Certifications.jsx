@@ -35,7 +35,7 @@ export default function Certifications() {
                   <p className="text-xs font-semibold text-secondary/80 mb-2">{cert.issuer}</p>
                   <p className="text-xs text-secondary/70">{cert.date}</p>
                   {cert.credentialId && (
-                    <p className="text-[11px] font-mono text-secondary/60 mt-1">ID: {cert.credentialId}</p>
+                    <p className="text-[11px] font-sans text-secondary/60 mt-1">ID: {cert.credentialId}</p>
                   )}
                 </div>
                 {cert.link && (

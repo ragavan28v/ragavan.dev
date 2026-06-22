@@ -24,7 +24,10 @@ export default {
         soft: '0 12px 30px rgba(15, 23, 42, 0.06)'
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+        sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        Poppins: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        Inria: ['Inria Serif', 'ui-serif', 'Georgia', 'serif'],
+        Paprika: ['Paprika', 'cursive']
       }
     }
   },

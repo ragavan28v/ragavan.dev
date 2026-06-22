@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Inria+Serif:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Paprika&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,10 +44,33 @@
   }
 
   body {
-    @apply font-sans antialiased;
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    @apply antialiased;
     background-color: var(--bg-page);
     color: var(--text-1);
     line-height: 1.75;
+  }
+
+  h1 {
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  h2 {
+    font-family: "Inria Serif", ui-serif, Georgia, serif;
+  }
+
+  h3,
+  h4,
+  h6 {
+    font-family: "Paprika", cursive;
+  }
+
+  p,
+  span,
+  button,
+  input,
+  textarea {
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
   }
 
   ::selection {
@@ -204,5 +231,78 @@
     background-color: color-mix(in srgb, var(--bg-card) 92%, transparent);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(12px);
+  }
+
+  .hero-kicker {
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    @apply text-sm font-semibold tracking-wider uppercase;
+    color: var(--accent);
+  }
+
+  .hero-name {
+    font-family: "Inria Serif", ui-serif, Georgia, serif;
+    @apply text-4xl font-bold tracking-tight sm:text-[4.65rem] lg:text-[4rem];
+    color: #06223f;
+    line-height: 0.95;
+  }
+
+  .hero-copy {
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    @apply text-base font-normal leading-relaxed sm:text-lg lg:text-xl;
+    color: #06223f;
+  }
+
+  .hero-copy-sm {
+    @apply text-base sm:text-lg lg:text-xl;
+  }
+
+  .hero-desc {
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    @apply text-base font-normal leading-relaxed sm:text-lg lg:text-xl;
+    color: #06223f;
+  }
+
+  .hero-desc-lg {
+    @apply sm:text-xl lg:text-2xl xl:text-[1.65rem] leading-relaxed;
+  }
+
+  .hero-focus {
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    @apply text-sm font-semibold;
+    color: var(--accent);
+  }
+
+  .hero-focus-label {
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    @apply font-medium;
+    color: var(--text-2);
+  }
+
+  .hero-banner-wrap {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+
+  .hero-banner-word {
+    position: absolute;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform-origin: center;
+    white-space: nowrap;
+    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    @apply font-black leading-none uppercase tracking-[0.12em];
+  }
+
+  .hero-banner-first {
+    top: 14%;
+    right: 1.85rem;
+    @apply text-6xl lg:text-7xl;
+    color: #ffffff;
+  }
+
+  .hero-banner-last {
+    top: 14%;
+    right: 6.2rem;
+    @apply text-4xl lg:text-5xl;
+    color: #0b0f14;
   }
 }

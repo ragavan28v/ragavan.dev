@@ -4,13 +4,7 @@ import { Github, Linkedin } from 'lucide-react';
 import useInView from '../hooks/useInView';
 import { cardReveal, fadeDown, fadeUp, stagger } from '../lib/animations';
 
-const tags = [
-  'Full-Stack Development',
-  'AI Integration',
-  'React Native',
-  'MERN Stack',
-  'Mobile Apps'
-];
+const tags = ['MERN Stack', 'Mobile Apps', 'Full Stack Development', 'AI Integration', 'React Native'];
 
 export default function Hero() {
   const { ref, controls } = useInView();
@@ -44,19 +38,22 @@ export default function Hero() {
         >
           {/* Left Column: Copy & Actions */}
           <motion.div variants={stagger} className="flex flex-col justify-center text-left">
-            <motion.span variants={fadeDown} className="section-kicker text-sm font-semibold tracking-wider text-accent uppercase">
-              Full-Stack Developer
+            <motion.span variants={fadeDown} className="hero-kicker">
+              Portfolio
             </motion.span>
-            <motion.h1 variants={fadeDown} className="mt-4 text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
-              Ragavan V
+            <motion.h1 variants={fadeDown} className="mt-4 hero-name whitespace-nowrap">
+              Software Engineer
             </motion.h1>
-            <motion.h2 variants={fadeUp} className="mt-4 text-xl font-normal leading-relaxed text-secondary sm:text-2xl max-w-xl">
-              Building full-stack applications, integrating AI where it adds value, and learning React Native for mobile experiences.
+            <motion.h2 variants={fadeUp} className="mt-4 hero-copy hero-copy-sm whitespace-nowrap max-w-none">
+              Full-Stack Development | AI Systems | Mobile Apps
             </motion.h2>
+            <motion.p variants={fadeUp} className="mt-4 hero-desc hero-desc-lg max-w-xl lg:max-w-2xl">
+              Building scalable software systems, AI-powered applications, and modern mobile experiences.
+            </motion.p>
 
             {/* Cycling Tag Strip */}
-            <motion.div variants={fadeUp} className="mt-6 flex h-8 items-center gap-2 text-sm font-semibold text-accent overflow-hidden">
-              <span className="text-secondary font-medium">Focused on:</span>
+            <motion.div variants={fadeUp} className="mt-6 flex h-8 items-center gap-2 overflow-hidden">
+              <span className="hero-focus-label">Focused on:</span>
               <div className="relative w-48 h-full flex items-center">
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -65,7 +62,7 @@ export default function Hero() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -15, opacity: 0 }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="absolute left-0 inline-block whitespace-nowrap"
+                    className="hero-focus absolute left-0 inline-block whitespace-nowrap"
                   >
                     {tags[tagIndex]}
                   </motion.span>
@@ -93,7 +90,7 @@ export default function Hero() {
                 variants={fadeUp}
                 className="btn-outline border-accent"
               >
-                Skill Snapshot
+                Developer Profile
               </motion.a>
               <motion.div variants={stagger} className="flex items-center gap-3">
                 <motion.a
@@ -138,11 +135,10 @@ export default function Hero() {
         variants={fadeDown}
         initial="hidden"
         animate={controls}
-        className="absolute right-[8%] lg:right-[10%] top-[8vh] bottom-[8vh] z-10 hidden lg:flex flex-col justify-between items-center select-none pointer-events-none text-white font-black uppercase text-6xl lg:text-[8vh] xl:text-[10vh] leading-none"
+        className="absolute right-0 top-0 bottom-0 z-30 hidden lg:block select-none pointer-events-none hero-banner-wrap"
       >
-        {'RAGAVAN'.split('').map((char, idx) => (
-          <span key={idx}>{char}</span>
-        ))}
+        <div className="hero-banner-word hero-banner-last">VENKATESAN</div>
+        <div className="hero-banner-word hero-banner-first">RAGAVAN</div>
       </motion.div>
 
       {/* Desktop Right Column: Hero Photo (Absolutely aligned to the bottom, shifted leftward) */}
