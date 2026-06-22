@@ -52,7 +52,7 @@ export default function Skills() {
   const CategoryIcon = iconsMap[activeCatData.label] || Cpu;
 
   return (
-    <section id="skills" className="section-shell min-h-screen flex items-center bg-white dark:bg-page scroll-mt-0 relative overflow-hidden py-12 lg:py-16">
+    <section id="skills" className="section-shell min-h-screen flex items-center bg-white dark:bg-page scroll-mt-0 relative overflow-hidden py-8 lg:py-12">
       {/* HUD scanning background grid */}
       <div className="absolute inset-0 bg-[radial-gradient(var(--accent-surface)_1.5px,transparent_1.5px)] bg-[size:24px_24px] opacity-30 pointer-events-none" />
 
@@ -68,11 +68,11 @@ export default function Skills() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             {/* Left Console: Category Selector */}
-            <div className="lg:col-span-4 flex flex-col gap-3">
+            <div className="lg:col-span-4 flex flex-col gap-2">
               <span className="text-[10px] font-bold tracking-widest text-secondary uppercase px-2 mb-0.5 block">
                 Console Directory
               </span>
-              <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 gap-3 scrollbar-hide">
+              <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 gap-2 scrollbar-hide">
                 {skillCategories.map((category, idx) => {
                   const IconComponent = iconsMap[category.label] || Cpu;
                   const isActive = activeCategory === idx;
@@ -89,7 +89,7 @@ export default function Skills() {
                         setActiveCategory(idx);
                       }}
                       onMouseLeave={() => setIsPaused(false)}
-                      className={`relative flex items-center gap-3.5 px-4 py-3.5 text-left border rounded-xl transition-all duration-300 shrink-0 lg:shrink-1 ${
+                      className={`relative flex items-center gap-3.5 px-4 py-2.5 text-left border rounded-xl transition-all duration-300 shrink-0 lg:shrink-1 ${
                         isActive
                           ? 'border-accent bg-accent/5 dark:bg-accent/10 shadow-[0_0_12px_rgba(6,34,63,0.06)] dark:shadow-[0_0_15px_rgba(194,217,255,0.04)]'
                           : 'border-slate-200/50 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/20 hover:border-accent/40'
@@ -122,7 +122,7 @@ export default function Skills() {
             </div>
 
             {/* Right HUD: Holographic Visualizer */}
-            <div className="lg:col-span-8 cyber-panel p-5 lg:p-6 min-h-[350px] lg:h-full flex flex-col justify-between overflow-hidden shadow-sm bg-slate-50/45 dark:bg-slate-950/20">
+            <div className="lg:col-span-8 cyber-panel p-5 lg:p-6 min-h-[310px] lg:h-full flex flex-col justify-between overflow-hidden shadow-sm bg-slate-50/45 dark:bg-slate-950/20">
               {/* Corner brackets */}
               <span className="cyber-panel-corner cyber-corner-tl" />
               <span className="cyber-panel-corner cyber-corner-tr" />
