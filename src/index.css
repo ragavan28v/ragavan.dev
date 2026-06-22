@@ -297,6 +297,11 @@
     right: 1.85rem;
     @apply text-6xl lg:text-7xl;
     color: #ffffff;
+    text-shadow: 
+      1px 1px 0px #d5e3f1,
+      2px 2px 0px #b6ccf5,
+      3px 3px 0px #9bb0c5,
+      4px 4px 6px rgba(6, 34, 63, 0.2);
   }
 
   .hero-banner-last {
@@ -347,5 +352,13 @@
     animation: scan 4s linear infinite;
     opacity: 0.8;
     pointer-events: none;
+  }
+
+  .dark .hero-banner-first {
+    text-shadow: 
+      1px 1px 0px #1e293b,
+      2px 2px 0px #0f172a,
+      3px 3px 0px #020617,
+      4px 4px 6px rgba(0, 0, 0, 0.4);
   }
 }
