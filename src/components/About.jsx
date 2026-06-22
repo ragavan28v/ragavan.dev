@@ -50,8 +50,14 @@ export default function About() {
                   key={area.label}
                   custom={index}
                   variants={cardReveal}
-                  className="flex items-center gap-4 rounded-xl glass-effect p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                  className="relative flex items-center gap-4 rounded-xl border border-slate-200/50 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/20 p-4 transition-all duration-300 hover:border-accent/50 hover:shadow-md"
                 >
+                  {/* Corner Brackets */}
+                  <span className="cyber-panel-corner cyber-corner-tl" />
+                  <span className="cyber-panel-corner cyber-corner-tr" />
+                  <span className="cyber-panel-corner cyber-corner-bl" />
+                  <span className="cyber-panel-corner cyber-corner-br" />
+
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
                     <Icon className="h-5 w-5" />
                   </div>

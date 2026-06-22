@@ -305,4 +305,47 @@
     @apply text-4xl lg:text-5xl;
     color: #0b0f14;
   }
+
+  /* Cybernetic HUD layout styles */
+  .cyber-panel {
+    position: relative;
+    border: 1px solid rgba(6, 34, 63, 0.12);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+  }
+
+  .dark .cyber-panel {
+    border: 1px solid rgba(194, 217, 255, 0.08);
+    background: rgba(15, 29, 47, 0.35);
+  }
+
+  .cyber-panel-corner {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-color: var(--accent);
+    border-style: solid;
+    pointer-events: none;
+  }
+  .cyber-corner-tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .cyber-corner-tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .cyber-corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+  .cyber-corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  .scanner-sweep {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: scan 4s linear infinite;
+    opacity: 0.8;
+    pointer-events: none;
+  }
 }
