@@ -122,7 +122,7 @@ export default function Skills() {
             </div>
 
             {/* Right HUD: Holographic Visualizer */}
-            <div className="lg:col-span-8 cyber-panel p-5 lg:p-6 min-h-[350px] lg:h-[410px] flex flex-col justify-between overflow-hidden shadow-sm bg-slate-50/45 dark:bg-slate-950/20">
+            <div className="lg:col-span-8 cyber-panel p-5 lg:p-6 min-h-[350px] lg:h-full flex flex-col justify-between overflow-hidden shadow-sm bg-slate-50/45 dark:bg-slate-950/20">
               {/* Corner brackets */}
               <span className="cyber-panel-corner cyber-corner-tl" />
               <span className="cyber-panel-corner cyber-corner-tr" />
