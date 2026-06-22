@@ -136,19 +136,27 @@ export default function ProjectCard({ project }) {
 
             {/* Architecture Flow */}
             <div className="mt-5">
+              <span className="text-[9px] font-mono font-bold tracking-widest text-secondary/60 uppercase mb-2 block">
+                SYSTEM_ARCHITECTURE_FLOW:
+              </span>
               <ArchitectureFlow nodes={project.architecture} />
             </div>
 
             {/* Tech stack pills */}
-            <div className="mt-5 flex flex-wrap gap-1.5">
-              {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-0.5 text-xs font-semibold hover:opacity-90 cursor-default"
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="mt-5">
+              <span className="text-[9px] font-mono font-bold tracking-widest text-secondary/60 uppercase mb-2 block">
+                CORE_TECHNOLOGY_STACK:
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {project.stack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-0.5 text-xs font-semibold hover:opacity-90 cursor-default"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
