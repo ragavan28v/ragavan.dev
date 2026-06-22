@@ -3,7 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Carousel({ slides, title }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: 'start' });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [snapCount, setSnapCount] = useState(0);
 
@@ -19,9 +19,15 @@ export default function Carousel({ slides, title }) {
     emblaApi.on('select', update);
     emblaApi.on('reInit', update);
 
+    // Autoplay interval
+    const autoplay = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 4000);
+
     return () => {
       emblaApi.off('select', update);
       emblaApi.off('reInit', update);
+      clearInterval(autoplay);
       emblaApi.destroy();
     };
   }, [emblaApi]);
