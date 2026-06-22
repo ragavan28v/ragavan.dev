@@ -328,10 +328,10 @@
     border-style: solid;
     pointer-events: none;
   }
-  .cyber-corner-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
-  .cyber-corner-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
-  .cyber-corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
-  .cyber-corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+  .cyber-corner-tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .cyber-corner-tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .cyber-corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+  .cyber-corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
   @keyframes scan {
     0% { transform: translateY(-100%); }

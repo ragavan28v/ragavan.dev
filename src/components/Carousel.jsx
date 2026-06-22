@@ -19,15 +19,25 @@ export default function Carousel({ slides, title }) {
     emblaApi.on('select', update);
     emblaApi.on('reInit', update);
 
-    // Autoplay interval
-    const autoplay = setInterval(() => {
+    // Auto-slide autoplay loop
+    let intervalId = setInterval(() => {
       emblaApi.scrollNext();
     }, 4000);
+
+    const resetAutoplay = () => {
+      clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        emblaApi.scrollNext();
+      }, 4000);
+    };
+
+    emblaApi.on('pointerDown', () => clearInterval(intervalId));
+    emblaApi.on('pointerUp', resetAutoplay);
 
     return () => {
       emblaApi.off('select', update);
       emblaApi.off('reInit', update);
-      clearInterval(autoplay);
+      clearInterval(intervalId);
       emblaApi.destroy();
     };
   }, [emblaApi]);
