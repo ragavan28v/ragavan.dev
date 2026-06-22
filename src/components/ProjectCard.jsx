@@ -20,8 +20,6 @@ import {
   WalletCards,
   WifiOff,
 } from 'lucide-react';
-import useInView from '../hooks/useInView';
-import { scaleIn } from '../lib/animations';
 import Carousel from './Carousel';
 import ArchitectureFlow from './ArchitectureFlow';
 
@@ -48,43 +46,69 @@ function highlightIcon(name) {
   return <Icon className="h-4 w-4 text-accent" />;
 }
 
+const shutterLeft = {
+  hidden: { opacity: 0, x: -30 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const shutterRight = {
+  hidden: { opacity: 0, x: 30 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
 export default function ProjectCard({ project }) {
-  const { ref, controls } = useInView();
   const [open, setOpen] = useState(false);
 
   return (
     <motion.article
-      ref={ref}
-      className="card-shell overflow-hidden p-0"
-      variants={scaleIn}
+      className="cyber-panel overflow-hidden p-0 shadow-sm border border-slate-200/50 dark:border-slate-800 bg-slate-50/25 dark:bg-slate-900/10 hover:border-accent/40 hover:shadow-md transition-all duration-300"
       initial="hidden"
-      animate={controls}
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
+      whileInView="visible"
+      viewport={{ once: true, margin: '-8%' }}
+      variants={{
+        visible: { transition: { staggerChildren: 0.1 } }
+      }}
     >
-      <div className="grid min-w-0 gap-0 lg:grid-cols-2">
-        {/* Carousel Column */}
-        <div className="min-w-0 p-6 flex flex-col justify-center bg-white/10 dark:bg-slate-950/15">
-          <Carousel slides={project.images} title={project.title} />
-        </div>
+      {/* Corner Brackets */}
+      <span className="cyber-panel-corner cyber-corner-tl" />
+      <span className="cyber-panel-corner cyber-corner-tr" />
+      <span className="cyber-panel-corner cyber-corner-bl" />
+      <span className="cyber-panel-corner cyber-corner-br" />
 
-        {/* Content Column */}
-        <div className="min-w-0 border-t border-theme p-6 lg:border-l lg:border-t-0 bg-white/25 dark:bg-slate-900/25 flex flex-col justify-between">
+      <div className="grid min-w-0 gap-0 lg:grid-cols-2">
+        {/* Left Column: Carousel */}
+        <motion.div
+          variants={shutterLeft}
+          className="min-w-0 p-6 flex flex-col justify-center bg-white/10 dark:bg-slate-950/15"
+        >
+          <Carousel slides={project.images} title={project.title} />
+        </motion.div>
+
+        {/* Right Column: Details */}
+        <motion.div
+          variants={shutterRight}
+          className="min-w-0 border-t border-theme p-6 lg:border-l lg:border-t-0 bg-white/25 dark:bg-slate-900/25 flex flex-col justify-between"
+        >
           <div>
-            {/* Category badge */}
-            <span className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-1 text-xs font-semibold">
-              {project.badge}
-            </span>
+            {/* Category badge & Status Code */}
+            <div className="flex items-center justify-between gap-4">
+              <span className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-1 text-xs font-semibold">
+                {project.badge}
+              </span>
+              <span className="text-[9px] font-mono text-secondary/60 tracking-wider">
+                SYS_DEV_LINK_OK
+              </span>
+            </div>
 
             <h3 className="mt-4 text-xl font-bold text-primary">{project.title}</h3>
-            <p className="mt-2 text-sm text-secondary">{project.tagline}</p>
+            <p className="mt-2 text-sm text-secondary leading-relaxed">{project.tagline}</p>
 
             {/* Key highlights: 3-column icon+label grid */}
             <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
               {project.highlights.map((item) => (
                 <div
                   key={item.label}
-                  className="flex flex-col items-center justify-center rounded-lg border border-theme bg-surface dark:bg-page p-3 text-center"
+                  className="flex flex-col items-center justify-center rounded-lg border border-theme bg-surface dark:bg-page p-3 text-center transition-colors duration-200 hover:border-accent/30"
                 >
                   {highlightIcon(item.icon)}
                   <p className="mt-2 text-[11px] font-medium text-secondary leading-snug">{item.label}</p>
@@ -117,12 +141,12 @@ export default function ProjectCard({ project }) {
               </table>
             </div>
 
-            {/* Tech stack pills (blue-tinted: #EFF6FF bg, #1D4ED8 text) */}
+            {/* Tech stack pills */}
             <div className="mt-5 flex flex-wrap gap-1.5">
               {project.stack.map((tech) => (
                 <span
                   key={tech}
-                  className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-0.5 text-xs font-semibold"
+                  className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-0.5 text-xs font-semibold hover:opacity-90 cursor-default"
                 >
                   {tech}
                 </span>
@@ -194,7 +218,7 @@ export default function ProjectCard({ project }) {
               )}
             </AnimatePresence>
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.article>
   );
