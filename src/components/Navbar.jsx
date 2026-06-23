@@ -41,34 +41,6 @@ function scrollToSection(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Generate the keyhole cutout path dynamically based on active item vertical position
-const getPath = (activeY, isHome) => {
-  if (isHome) {
-    return `
-      M 32,0
-      A 32,32 0 0,1 64,32
-      L 64,478
-      A 32,32 0 0,1 0,478
-      L 0,32
-      A 32,32 0 0,1 32,0
-      Z
-    `;
-  }
-  return `
-    M 32,0
-    A 32,32 0 0,1 64,32
-    L 64,${activeY - 20.4}
-    A 10,10 0 0,1 46.67,${activeY - 13.6}
-    A 20,20 0 1,0 46.67,${activeY + 13.6}
-    A 10,10 0 0,1 64,${activeY + 20.4}
-    L 64,478
-    A 32,32 0 0,1 0,478
-    L 0,32
-    A 32,32 0 0,1 32,0
-    Z
-  `;
-};
-
 export default function Navbar({ darkMode, onToggleDarkMode }) {
   const spyActiveId = useScrollSpy(sectionIds);
   const [localActiveId, setLocalActiveId] = useState('');
@@ -146,39 +118,50 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
         </button>
       </div>
 
-      {/* DESKTOP SIDE NAVIGATION (Classic Morphing Cutout) */}
+      {/* DESKTOP SIDE NAVIGATION (Cyber Panel Style) */}
       <nav
-        className="fixed z-50 left-8 top-1/2 -translate-y-1/2 w-16 h-[510px] hidden lg:block"
+        className="fixed z-50 left-8 top-1/2 -translate-y-1/2 w-16 h-[510px] hidden lg:block cyber-panel shadow-sm bg-slate-50/40 dark:bg-slate-950/20 rounded-2xl border border-slate-200/50 dark:border-slate-800"
         aria-label="Desktop Side Navigation"
       >
-        {/* DESKTOP BACKGROUND SVG WITH MORPHING KEYHOLE CUTOUT */}
-        <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none">
-          <svg
-            width="64"
-            height="510"
-            viewBox="0 0 64 510"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-full drop-shadow-md backdrop-blur-md overflow-visible"
-          >
-            <motion.path
-              animate={{ d: getPath(activeY, activeId === 'home') }}
-              transition={{ type: 'tween', ease: [0.25, 1, 0.5, 1], duration: 0.35 }}
-              className="fill-transparent stroke-slate-200 dark:stroke-slate-800"
-              strokeWidth="1.2"
-            />
-          </svg>
-        </div>
+        {/* Cyber corners for outer nav container */}
+        <span className="cyber-panel-corner cyber-corner-tl" />
+        <span className="cyber-panel-corner cyber-corner-tr" />
+        <span className="cyber-panel-corner cyber-corner-bl" />
+        <span className="cyber-panel-corner cyber-corner-br" />
+
+        {/* Central rail track line */}
+        <div className="absolute top-6 bottom-6 left-[31px] w-[1px] bg-slate-200/80 dark:bg-slate-800/40 pointer-events-none z-0" />
 
         <div className="relative w-full h-full">
+          {/* Sliding active frame indicator */}
+          <motion.div
+            animate={{ top: `${activeY}px` }}
+            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+            className="absolute left-[10px] -translate-y-1/2 w-11 h-11 border border-[var(--accent)] rounded-xl bg-[var(--accent)]/10 dark:bg-[var(--accent)]/15 pointer-events-none z-0"
+          >
+            {/* Cyber corners on the active frame */}
+            <span className="absolute w-1.5 h-1.5 border-t border-l border-[var(--accent)] top-[-1px] left-[-1px] rounded-tl-[3px]" />
+            <span className="absolute w-1.5 h-1.5 border-t border-r border-[var(--accent)] top-[-1px] right-[-1px] rounded-tr-[3px]" />
+            <span className="absolute w-1.5 h-1.5 border-b border-l border-[var(--accent)] bottom-[-1px] left-[-1px] rounded-bl-[3px]" />
+            <span className="absolute w-1.5 h-1.5 border-b border-r border-[var(--accent)] bottom-[-1px] right-[-1px] rounded-br-[3px]" />
+            
+            {/* Pulsing micro-scanline */}
+            <motion.div
+              animate={{ y: [-14, 14] }}
+              transition={{ repeat: Infinity, repeatType: "reverse", duration: 1.5, ease: "linear" }}
+              className="absolute inset-x-1 h-[1.5px] bg-[var(--accent)] opacity-50 pointer-events-none"
+              style={{ top: '50%' }}
+            />
+          </motion.div>
+
           {/* Logo RV */}
           <button
             type="button"
             onClick={handleHomeClick}
-            className={`absolute top-4 left-[10px] h-11 w-11 flex items-center justify-center rounded-full font-extrabold text-sm border transition-all duration-200 ${
+            className={`absolute top-4 left-[10px] h-11 w-11 flex items-center justify-center font-extrabold text-sm transition-all duration-200 rounded-xl z-10 ${
               activeId === 'home'
-                ? 'bg-[var(--accent)] text-white scale-110 shadow-sm border-transparent'
-                : 'bg-[var(--accent)]/10 dark:bg-white/10 text-primary border-slate-200 dark:border-white/20 hover:bg-[var(--accent)]/20 dark:hover:bg-white/20'
+                ? 'text-[var(--accent)] scale-110 font-extrabold'
+                : 'text-primary hover:text-[var(--accent)]'
             }`}
             aria-label="Scroll to top"
           >
@@ -202,10 +185,10 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
                 <button
                   type="button"
                   onClick={() => handleNavClick(link.id)}
-                  className={`relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-200 ${
+                  className={`relative flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-200 z-10 ${
                     active
-                      ? 'text-[var(--accent)] scale-120 font-bold'
-                      : 'text-secondary/60 hover:text-primary hover:bg-slate-300/20 dark:hover:bg-slate-800/30'
+                      ? 'text-[var(--accent)] scale-110 font-bold'
+                      : 'text-secondary/60 hover:text-[var(--accent)]'
                   }`}
                   aria-label={`Scroll to ${link.label}`}
                 >
