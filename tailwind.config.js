@@ -7,6 +7,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        accent: 'var(--accent)',
+        'accent-hover': 'var(--accent-hover)',
+        'accent-surface': 'var(--accent-surface)',
         brand: {
           50: '#EFF6FF',
           100: '#DBEAFE',
