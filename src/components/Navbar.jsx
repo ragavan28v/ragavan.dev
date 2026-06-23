@@ -219,7 +219,7 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
                       initial={{ opacity: 0, x: -5 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -5 }}
-                      className="absolute left-14 rounded bg-slate-950/95 px-3 py-1.5 text-[10px] font-mono font-bold text-[var(--accent)] shadow-lg border border-[var(--accent)]/40 backdrop-blur-md pointer-events-none whitespace-nowrap flex items-center gap-1.5"
+                      className="absolute left-14 rounded bg-white/95 dark:bg-slate-950/95 px-3 py-1.5 text-[10px] font-mono font-bold text-[var(--accent)] shadow-lg border border-slate-200 dark:border-[var(--accent)]/40 backdrop-blur-md pointer-events-none whitespace-nowrap flex items-center gap-1.5"
                     >
                       <span>&gt;&gt;</span>
                       <span>{`[0${i + 1}:${link.label.toUpperCase()}]`}</span>
