@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar } from 'lucide-react';
 import useInView from '../hooks/useInView';
@@ -26,6 +26,14 @@ const experiences = [
 export default function Experience() {
   const { ref, controls } = useInView();
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto loop chronology nodes every 6 seconds (resets on manual tab click)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % experiences.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [activeIndex]);
 
   return (
     <section id="experience" className="section-shell min-h-[85vh] lg:min-h-screen flex items-center bg-surface scroll-mt-0 relative overflow-hidden py-10 lg:py-16">
