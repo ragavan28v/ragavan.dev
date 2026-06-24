@@ -66,7 +66,7 @@ export default function Projects() {
           </motion.div>
 
           {/* Animating Projects Grid */}
-          <motion.div layout className="mt-8 space-y-12">
+          <motion.div layout className="mt-8 space-y-8 lg:space-y-10">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project) => (
                 <motion.div

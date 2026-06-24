@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import Carousel from './Carousel';
 import ArchitectureFlow from './ArchitectureFlow';
+import { fadeUp } from '../lib/animations';
 
 const iconMap = {
   Activity,
@@ -46,22 +47,12 @@ function highlightIcon(name) {
   return <Icon className="h-4 w-4 text-accent" />;
 }
 
-const shutterLeft = {
-  hidden: { opacity: 0, x: -30 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
-const shutterRight = {
-  hidden: { opacity: 0, x: 30 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
-
 export default function ProjectCard({ project }) {
   const [open, setOpen] = useState(false);
 
   return (
     <motion.article
-      className="cyber-panel overflow-hidden p-0 shadow-sm border border-slate-200/50 dark:border-slate-800 bg-slate-50/25 dark:bg-slate-900/10 hover:border-accent/40 hover:shadow-md transition-all duration-300"
+      className="cyber-panel relative p-0 shadow-sm border border-slate-200/50 dark:border-slate-800 bg-slate-50/25 dark:bg-slate-900/10 hover:border-accent/40 hover:shadow-md transition-all duration-300"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-8%' }}
@@ -69,29 +60,30 @@ export default function ProjectCard({ project }) {
         visible: { transition: { staggerChildren: 0.1 } }
       }}
     >
-      {/* Corner Brackets */}
-      <span className="cyber-panel-corner cyber-corner-tl" />
-      <span className="cyber-panel-corner cyber-corner-tr" />
-      <span className="cyber-panel-corner cyber-corner-bl" />
-      <span className="cyber-panel-corner cyber-corner-br" />
+      <span className="cyber-panel-corner cyber-corner-tl z-30" />
+      <span className="cyber-panel-corner cyber-corner-tr z-30" />
+      <span className="cyber-panel-corner cyber-corner-bl z-30" />
+      <span className="cyber-panel-corner cyber-corner-br z-30" />
 
-      <div className="grid min-w-0 gap-0 lg:grid-cols-2">
-        {/* Left Column: Carousel & Features list */}
+      <div className="scanner-sweep z-20 opacity-75" />
+
+      <div className="relative z-10 overflow-hidden rounded-[12px]">
+        <div className="grid min-w-0 gap-0 lg:grid-cols-2">
         <motion.div
-          variants={shutterLeft}
-          className="min-w-0 p-5 flex flex-col justify-between bg-white/10 dark:bg-slate-950/15 gap-4"
+          variants={fadeUp}
+          className="min-w-0 p-4 lg:p-5 flex flex-col justify-between bg-white/10 dark:bg-slate-950/15 gap-3.5 lg:gap-4"
         >
           <div className="flex-1 flex flex-col justify-center">
             <Carousel slides={project.images} title={project.title} />
           </div>
-          
-          <div className="border border-theme rounded-xl p-3 bg-white/30 dark:bg-slate-950/25">
-            <span className="text-[9px] font-mono font-bold tracking-widest text-secondary/70 uppercase mb-2 block">
+
+          <div className="border border-theme rounded-xl p-2.5 lg:p-3 bg-white/30 dark:bg-slate-950/25">
+            <span className="text-[8px] lg:text-[9px] font-mono font-bold tracking-widest text-secondary/70 uppercase mb-1.5 lg:mb-2 block">
               SYSTEM_FEATURES_MANIFEST:
             </span>
             <div className="space-y-1.5">
               {project.features.map((row) => (
-                <div key={row.feature} className="flex gap-2 items-start text-[11px] leading-snug">
+                <div key={row.feature} className="flex gap-2 items-start text-[10px] lg:text-[11px] leading-snug">
                   <span className="h-1 w-1 rounded-full bg-accent mt-1.5 shrink-0" />
                   <p className="text-secondary">
                     <strong className="text-primary font-semibold">{row.feature}:</strong> {row.description}
@@ -102,15 +94,13 @@ export default function ProjectCard({ project }) {
           </div>
         </motion.div>
 
-        {/* Right Column: Details */}
         <motion.div
-          variants={shutterRight}
-          className="min-w-0 border-t border-theme p-6 lg:border-l lg:border-t-0 bg-white/25 dark:bg-slate-900/25 flex flex-col justify-between"
+          variants={fadeUp}
+          className="min-w-0 p-4 lg:p-5 bg-white/25 dark:bg-slate-900/25 flex flex-col justify-between"
         >
           <div>
-            {/* Category badge & Status Code */}
             <div className="flex items-center justify-between gap-4">
-              <span className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-1 text-xs font-semibold">
+              <span className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-1 text-[11px] font-semibold">
                 {project.badge}
               </span>
               <span className="text-[9px] font-mono text-secondary/60 tracking-wider">
@@ -118,40 +108,37 @@ export default function ProjectCard({ project }) {
               </span>
             </div>
 
-            <h3 className="mt-4 text-xl font-bold text-primary">{project.title}</h3>
-            <p className="mt-2 text-sm text-secondary leading-relaxed">{project.tagline}</p>
+            <h3 className="mt-3 lg:mt-4 text-lg lg:text-xl font-bold text-primary leading-tight">{project.title}</h3>
+            <p className="mt-2 text-[13px] lg:text-sm text-secondary leading-relaxed">{project.tagline}</p>
 
-            {/* Key highlights: 3-column icon+label grid */}
-            <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="mt-4 lg:mt-5 grid grid-cols-2 sm:grid-cols-3 gap-2.5 lg:gap-3">
               {project.highlights.map((item) => (
                 <div
                   key={item.label}
-                  className="flex flex-col items-center justify-center rounded-lg border border-theme bg-surface dark:bg-page p-3 text-center transition-colors duration-200 hover:border-accent/30"
+                  className="flex flex-col items-center justify-center rounded-lg border border-theme bg-surface dark:bg-page p-2.5 lg:p-3 text-center transition-colors duration-200 hover:border-accent/30"
                 >
                   {highlightIcon(item.icon)}
-                  <p className="mt-2 text-[11px] font-medium text-secondary leading-snug">{item.label}</p>
+                  <p className="mt-1.5 lg:mt-2 text-[10px] lg:text-[11px] font-medium text-secondary leading-snug">{item.label}</p>
                 </div>
               ))}
             </div>
 
-            {/* Architecture Flow */}
-            <div className="mt-5">
-              <span className="text-[9px] font-mono font-bold tracking-widest text-secondary/60 uppercase mb-2 block">
+            <div className="mt-4 lg:mt-5">
+              <span className="text-[8px] lg:text-[9px] font-mono font-bold tracking-widest text-secondary/60 uppercase mb-1.5 lg:mb-2 block">
                 SYSTEM_ARCHITECTURE_FLOW:
               </span>
               <ArchitectureFlow nodes={project.architecture} />
             </div>
 
-            {/* Tech stack pills */}
-            <div className="mt-5">
-              <span className="text-[9px] font-mono font-bold tracking-widest text-secondary/60 uppercase mb-2 block">
+            <div className="mt-4 lg:mt-5">
+              <span className="text-[8px] lg:text-[9px] font-mono font-bold tracking-widest text-secondary/60 uppercase mb-1.5 lg:mb-2 block">
                 CORE_TECHNOLOGY_STACK:
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-3 py-0.5 text-xs font-semibold hover:opacity-90 cursor-default"
+                    className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-2.5 py-0.5 text-[11px] font-semibold hover:opacity-90 cursor-default"
                   >
                     {tech}
                   </span>
@@ -160,15 +147,14 @@ export default function ProjectCard({ project }) {
             </div>
           </div>
 
-          {/* Actions & Accordion */}
-          <div className="mt-6 pt-5 border-t border-theme">
+          <div className="mt-5 pt-4 border-t border-theme">
             <div className="flex items-center justify-between gap-4">
               <div className="flex gap-2">
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-outline px-3 py-1.5 text-xs inline-flex items-center gap-1 border-accent"
+                  className="btn-outline px-3 py-1.5 text-[11px] inline-flex items-center gap-1 border-accent"
                 >
                   GitHub <ArrowUpRight className="h-3 w-3" />
                 </a>
@@ -176,23 +162,21 @@ export default function ProjectCard({ project }) {
                   href={project.demo}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-solid px-3 py-1.5 text-xs inline-flex items-center gap-1"
+                  className="btn-solid px-3 py-1.5 text-[11px] inline-flex items-center gap-1"
                 >
                   Live Demo <ArrowUpRight className="h-3 w-3" />
                 </a>
               </div>
 
-              {/* Accordion toggle */}
               <button
                 type="button"
                 onClick={() => setOpen((value) => !value)}
-                className="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:text-accent transition-colors"
+                className="inline-flex items-center gap-1 text-[11px] font-semibold text-secondary hover:text-accent transition-colors"
               >
                 Engineering notes {open ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
               </button>
             </div>
 
-            {/* Engineering notes accordion content */}
             <AnimatePresence initial={false}>
               {open && (
                 <motion.div
@@ -202,7 +186,7 @@ export default function ProjectCard({ project }) {
                   transition={{ duration: 0.25, ease: 'easeOut' }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-4 pt-4 border-t border-theme space-y-3 text-xs leading-relaxed text-secondary">
+                  <div className="mt-3 pt-3 border-t border-theme space-y-2.5 text-[11px] leading-relaxed text-secondary">
                     <p>
                       <span className="font-semibold text-primary block mb-0.5">Challenges Faced</span>
                       Ensuring high-efficiency performance and managing synchronization across offline states.
@@ -225,6 +209,7 @@ export default function ProjectCard({ project }) {
             </AnimatePresence>
           </div>
         </motion.div>
+        </div>
       </div>
     </motion.article>
   );
