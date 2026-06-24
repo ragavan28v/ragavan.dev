@@ -9,51 +9,51 @@ export default function Blog() {
   const { ref, controls } = useInView();
 
   return (
-    <section id="blog" className="section-shell min-h-screen flex items-center bg-white dark:bg-page scroll-mt-0">
+    <section id="blog" className="section-shell min-h-[calc(100vh-4.5rem)] flex items-center bg-surface scroll-mt-0 py-8">
       <div className="section-inner">
         <motion.div ref={ref} variants={stagger} initial="hidden" animate={controls}>
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="mb-6">
             <p className="section-kicker">Writing</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-primary">Technical Articles</h2>
+            <p className="mt-1.5 text-sm text-secondary max-w-2xl font-sans leading-relaxed">
+              Key insights and recent technical write-ups presented as a single visible cyber timeline.
+            </p>
           </motion.div>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {blogPosts.map((post) => (
-              <article
-                key={post.title}
-                className="card-shell overflow-hidden flex flex-col justify-between p-0"
-              >
-                <div>
-                  <div className="h-1 bg-accent" />
-                  <div className="p-6">
-                    <span className="inline-flex rounded-full bg-[#EFF6FF] text-[#1D4ED8] dark:bg-[#1E293B] dark:text-[#3B82F6] px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">
-                      {post.tag}
-                    </span>
-                    <h3 className="mt-4 text-base font-bold text-primary leading-snug line-clamp-2">
-                      {post.title}
-                    </h3>
-                  </div>
-                </div>
+          <article className="cyber-panel p-6 relative overflow-visible">
+            <span className="cyber-panel-corner cyber-corner-tl" />
+            <span className="cyber-panel-corner cyber-corner-tr" />
+            <span className="cyber-panel-corner cyber-corner-bl" />
+            <span className="cyber-panel-corner cyber-corner-br" />
+            <div className="scanner-sweep z-20 opacity-60" />
 
-                <div className="p-6 pt-0">
-                  <div className="flex items-center justify-between mt-4 text-[11px] text-secondary font-medium">
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-3.5 w-3.5" />
-                      <span>{post.readTime}</span>
+            <div className="relative z-10 flex gap-6">
+              <div className="w-14 flex flex-col items-center">
+                <div className="h-2 w-2 rounded-full bg-accent" />
+                <div className="h-full w-[2px] bg-slate-200/40 mt-2" />
+              </div>
+
+              <div className="flex-1">
+                <div className="space-y-6">
+                  {blogPosts.map((post, idx) => (
+                    <div key={post.title} className="p-4 rounded-lg bg-white/90 border border-slate-200/60 dark:bg-slate-950/40 dark:border-slate-800">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <span className="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-slate-100 text-accent">{idx + 1}</span>
+                          <div>
+                            <div className="text-sm font-semibold text-primary">{post.title}</div>
+                            <div className="text-xs text-secondary">{post.tag} • {post.readTime}</div>
+                          </div>
+                        </div>
+                        <a href={post.href} target="_blank" rel="noreferrer" className="text-accent font-semibold">Open <ArrowUpRight className="inline h-3 w-3" /></a>
+                      </div>
+                      {post.description && <p className="mt-3 text-sm text-secondary line-clamp-3">{post.description}</p>}
                     </div>
-                    <a
-                      href={post.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-0.5 text-accent hover:underline font-semibold"
-                    >
-                      Read post <ArrowUpRight className="h-3 w-3" />
-                    </a>
-                  </div>
+                  ))}
                 </div>
-              </article>
-            ))}
-          </div>
+              </div>
+            </div>
+          </article>
         </motion.div>
       </div>
     </section>
