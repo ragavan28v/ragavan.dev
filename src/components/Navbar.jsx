@@ -6,6 +6,7 @@ import {
   Briefcase,
   Download,
   FolderGit2,
+  Github,
   Moon,
   Send,
   Sun,
@@ -21,6 +22,7 @@ const links = [
   { label: 'Achievements', id: 'achievements', icon: Trophy },
   { label: 'Certifications', id: 'certifications', icon: Award },
   { label: 'Experience', id: 'experience', icon: Briefcase },
+  { label: 'GitHub', id: 'github', icon: Github },
   { label: 'Contact', id: 'contact', icon: Send },
 ];
 
@@ -28,13 +30,14 @@ const sectionIds = ['home', ...links.map((link) => link.id)];
 
 const yMap = {
   home: 38,
-  about: 110,
-  skills: 165,
-  projects: 220,
-  achievements: 275,
-  certifications: 330,
-  experience: 385,
-  contact: 440,
+  about: 104,
+  skills: 158,
+  projects: 212,
+  achievements: 266,
+  certifications: 320,
+  experience: 374,
+  github: 428,
+  contact: 482,
 };
 
 function scrollToSection(id) {
