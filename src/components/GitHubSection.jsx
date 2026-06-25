@@ -94,20 +94,6 @@ export default function GitHubSection() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-1.5">
-                  <div className="rounded-lg bg-white/90 p-2 border border-slate-200/60 dark:bg-slate-950/30 dark:border-slate-800 text-center">
-                    <p className="text-[8px] font-semibold text-secondary uppercase">Streak</p>
-                    <p className="text-base font-bold text-primary mt-1">12d</p>
-                  </div>
-                  <div className="rounded-lg bg-white/90 p-2 border border-slate-200/60 dark:bg-slate-950/30 dark:border-slate-800 text-center">
-                    <p className="text-[8px] font-semibold text-secondary uppercase">Language</p>
-                    <p className="text-base font-bold text-primary mt-1">Python</p>
-                  </div>
-                  <div className="rounded-lg bg-white/90 p-2 border border-slate-200/60 dark:bg-slate-950/30 dark:border-slate-800 text-center">
-                    <p className="text-[8px] font-semibold text-secondary uppercase">Commits</p>
-                    <p className="text-base font-bold text-primary mt-1">18/wk</p>
-                  </div>
-                </div>
               </div>
 
               <div className="grid gap-2 md:grid-cols-3">
