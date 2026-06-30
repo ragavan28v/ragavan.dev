@@ -67,7 +67,7 @@ export default function GitHubSection() {
                 <div className="grid gap-2 lg:grid-cols-[1.6fr_1fr]">
                   <div className="rounded-lg bg-white/90 p-2 border border-slate-200/60 dark:bg-slate-950/40 dark:border-slate-800 min-h-[12rem] overflow-hidden">
                     <img
-                      src={`https://github-readme-stats.vercel.app/api?username=${githubUser}&show_icons=true&theme=transparent&hide_border=true&cache_seconds=86400`}
+                      src={`https://github-readme-stats-7ebs.vercel.app/api?username=${githubUser}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&rank_icon=github&title_color=1d4ed8&text_color=1d4ed8&icon_color=1d4ed8`}
                       alt="GitHub stats overview"
                       loading="eager"
                       className="w-full h-full rounded-lg object-contain"
