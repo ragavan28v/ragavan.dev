@@ -35,9 +35,9 @@ export const projects = [
     badge: 'Autonomous Robotics',
     tagline: 'Autonomous exploration rover engineered for navigation and localization in a GPS-denied, moon-like terrain for the Caterpillar Autonomy Challenge 2026.',
     images: [
-      '/projects/caterpillar-rover/rover-overview.jpg',
-      '/projects/caterpillar-rover/rover-hardware.jpg',
-      '/projects/caterpillar-rover/ros-navigation.jpg',
+      'https://placehold.co/1280x720/EFF6FF/1D4ED8?text=Rover+Overview',
+      'https://placehold.co/1280x720/F8FAFA/1D4ED8?text=Rover+Hardware',
+      'https://placehold.co/1280x720/EEF2FF/1D4ED8?text=ROS+Navigation',
     ],
     highlights: [
       { label: 'Autonomous navigation', icon: 'Navigation' },
@@ -81,9 +81,9 @@ export const projects = [
     badge: 'Personal Development',
     tagline: 'Gamified habit tracking and personal development platform combining daily task management, brain training challenges, and AI-powered progress tracking.',
     images: [
-      '/projects/zero2elite/dashboard-overview.jpg',
-      '/projects/zero2elite/challenge-interface.jpg',
-      '/projects/zero2elite/progress-tracking.jpg',
+      'https://placehold.co/1280x720/EFF6FF/1D4ED8?text=ZERO2ELITE+Overview',
+      'https://placehold.co/1280x720/F8FAFA/1D4ED8?text=Challenge+Interface',
+      'https://placehold.co/1280x720/EEF2FF/1D4ED8?text=Progress+Tracking',
     ],
     highlights: [
       { label: 'Gamified habit tracking', icon: 'Zap' },
@@ -127,9 +127,9 @@ export const projects = [
     badge: 'Full-Stack FinTech',
     tagline: 'A robust, full-stack banking application built with the MERN stack, featuring secure fund transfers, group expense splitting, and modern responsive UI/UX.',
     images: [
-      '/projects/zaito-banking/dashboard.jpg',
-      '/projects/zaito-banking/transfers.jpg',
-      '/projects/zaito-banking/group-expenses.jpg',
+      'https://placehold.co/1280x720/EFF6FF/1D4ED8?text=Zaito+Dashboard',
+      'https://placehold.co/1280x720/F8FAFA/1D4ED8?text=Fund+Transfers',
+      'https://placehold.co/1280x720/EEF2FF/1D4ED8?text=Group+Expenses',
     ],
     highlights: [
       { label: 'JWT Authentication', icon: 'Lock' },
