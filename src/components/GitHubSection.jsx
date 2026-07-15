@@ -14,16 +14,16 @@ const repos = [
     stars: '128',
   },
   {
-    name: 'web-monitoring-agent',
-    description: 'Real-time crawling, deduplication, and summary generation pipeline.',
-    language: 'Python',
-    stars: '92',
+    name: 'caterpillar-rover',
+    description: 'Autonomous exploration rover navigation and localization stack for GPS-denied terrain.',
+    language: 'C++',
+    stars: '86',
   },
   {
-    name: 'k8s-ai-monitor',
-    description: 'Kubernetes discovery and analysis dashboard with AI insights.',
-    language: 'Python',
-    stars: '74',
+    name: 'zero2elite',
+    description: 'Gamified habit tracking and personal development platform with AI-powered challenges.',
+    language: 'TypeScript',
+    stars: '112',
   },
 ];
 

@@ -27,29 +27,38 @@ export default function Blog() {
             <span className="cyber-panel-corner cyber-corner-br" />
             <div className="scanner-sweep z-20 opacity-60" />
 
-            <div className="relative z-10 flex gap-6">
-              <div className="w-14 flex flex-col items-center">
-                <div className="h-2 w-2 rounded-full bg-accent" />
-                <div className="h-full w-[2px] bg-slate-200/40 mt-2" />
+            <div className="relative z-10 flex flex-col gap-4">
+              <div className="px-3.5 py-2.5 rounded-lg border border-accent/20 bg-accent/5 text-[11px] font-mono text-secondary/90 flex items-center gap-2.5">
+                <span className="h-2 w-2 rounded-full bg-accent animate-pulse shrink-0" />
+                <span>[SYSTEM_HUD_STATUS]: Publishing drafts and migrating local write-ups in progress. Full articles and external links will go live shortly.</span>
               </div>
 
-              <div className="flex-1">
-                <div className="space-y-6">
-                  {blogPosts.map((post, idx) => (
-                    <div key={post.title} className="p-4 rounded-lg bg-white/90 border border-slate-200/60 dark:bg-slate-950/40 dark:border-slate-800">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-slate-100 text-accent">{idx + 1}</span>
-                          <div>
-                            <div className="text-sm font-semibold text-primary">{post.title}</div>
-                            <div className="text-xs text-secondary">{post.tag} • {post.readTime}</div>
+              <div className="flex gap-6">
+                <div className="w-14 flex flex-col items-center">
+                  <div className="h-2 w-2 rounded-full bg-accent" />
+                  <div className="h-full w-[2px] bg-slate-200/40 mt-2" />
+                </div>
+
+                <div className="flex-1">
+                  <div className="space-y-6">
+                    {blogPosts.map((post, idx) => (
+                      <div key={post.title} className="p-4 rounded-lg bg-white/90 border border-slate-200/60 dark:bg-slate-950/40 dark:border-slate-800">
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-3">
+                            <span className="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-slate-100 dark:bg-slate-900 text-accent font-semibold text-sm">{idx + 1}</span>
+                            <div>
+                              <div className="text-sm font-semibold text-primary">{post.title}</div>
+                              <div className="text-xs text-secondary">{post.tag} • {post.readTime}</div>
+                            </div>
                           </div>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-accent/10 text-accent border border-accent/20 font-bold shrink-0">
+                            DRAFTING
+                          </span>
                         </div>
-                        <a href={post.href} target="_blank" rel="noreferrer" className="text-accent font-semibold">Open <ArrowUpRight className="inline h-3 w-3" /></a>
+                        {post.description && <p className="mt-3 text-sm text-secondary line-clamp-3">{post.description}</p>}
                       </div>
-                      {post.description && <p className="mt-3 text-sm text-secondary line-clamp-3">{post.description}</p>}
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
